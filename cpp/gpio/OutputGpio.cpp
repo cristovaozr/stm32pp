@@ -12,7 +12,7 @@ OutputGpio::OutputGpio(GPIO_TypeDef *gpio, GPIO::Name pin) : Gpio(gpio, pin)
         .Speed = LL_GPIO_SPEED_FREQ_LOW,
         .OutputType = LL_GPIO_OUTPUT_PUSHPULL,
         .Pull = LL_GPIO_PULL_NO,
-        .Alternate = 0
+        .Alternate = LL_GPIO_AF_0
     };
 
     LL_GPIO_Init(this->p_gpio, &initstruct);

@@ -10,9 +10,9 @@ InputGpio::InputGpio(GPIO_TypeDef *gpio, GPIO::Name pin) : Gpio(gpio, pin)
         .Pin = (uint32_t)this->p_pin,
         .Mode = LL_GPIO_MODE_INPUT,
         .Speed = LL_GPIO_SPEED_FREQ_LOW,
-        .OutputType = 0,
+        .OutputType = LL_GPIO_OUTPUT_PUSHPULL,
         .Pull = LL_GPIO_PULL_NO,
-        .Alternate = 0
+        .Alternate = LL_GPIO_AF_0
     };
 
     LL_GPIO_Init(this->p_gpio, &initstruct);
