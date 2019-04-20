@@ -2,8 +2,10 @@
 #define USART_H_
 
 #include <cstdint>
+#include <cstddef>
 #include "stm32f4xx.h"
 #include "stm32f4xx_ll_usart.h"
+#include "Comm.h"
 
 namespace USART {
 
@@ -30,21 +32,18 @@ typedef struct {
     USART::HardwareFlowControl HardwareFlowControl;
 } ConfigStruct;
 
-class Usart {
+class Usart : public Comm {
 public:
 
     explicit Usart(USART_TypeDef *usart, const USART::ConfigStruct &config);
     Usart(const Usart &c);
     virtual ~Usart();
 
-    virtual void Write(uint8_t c);
-    virtual uint32_t Write(const void *data, uint32_t size);
+    virtual size_t Write(const void *data, size_t size) override;
+    virtual size_t Read(void *data, size_t size) override;
 
-    virtual uint8_t Read();
-    virtual uint32_t Read(void *data, uint32_t size);
-
-    virtual bool isReadable();
-    virtual bool isWriteable();
+    virtual bool isReadable() override;
+    virtual bool isWriteable() override;
 
     void setBaudRate(uint32_t br);
     void setParity(USART::Parity pr);

@@ -2,19 +2,18 @@
 #define ICOMM_H_
 
 #include <cstddef>
-#include <array>
-
-namespace COMM {
 
 class Comm {
-
+public:
+    Comm() = default;
     virtual ~Comm() {};
 
-    virtual size_t WriteData(const void *, size_t s) = 0;
-    virtual size_t ReadData(void *, size_t s) = 0;
+    virtual size_t Write(const void *, size_t s) = 0;
+    virtual size_t Read(void *, size_t s) = 0;
+
+    virtual bool isWriteable() = 0;
+    virtual bool isReadable() = 0;
 
 };
-
-}; // namespace COMM
 
 #endif
