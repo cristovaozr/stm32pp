@@ -8,7 +8,7 @@ AS := $(CROSS_COMPILE)as
 OBJCOPY := $(CROSS_COMPILE)objcopy
 
 ARFLAGS += 
-INCLUDEDIR += -I./clib -I./cpp -I./cpp/gpio -I./cpp/usart
+INCLUDEDIR += -I./clib -I./cpp -I./cpp/gpio -I./cpp/usart -I./cpp/comm
 CFLAGS += -Wall -ggdb -Os -ffunction-sections -fdata-sections \
 	$(INCLUDEDIR) -DSTM32F407xx \
 	-DUSE_FULL_LL_DRIVER -DHSE_VALUE=8000000 -mcpu=cortex-m4 -mthumb -mfloat-abi=soft
