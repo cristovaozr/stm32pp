@@ -1,3 +1,8 @@
+/*
+* Copyright (c) 2019 Cristóvão Zuppardo Rufino
+* See LICENCE file for more information
+*/
+
 #ifndef GPIO_H_
 #define GPIO_H_
 

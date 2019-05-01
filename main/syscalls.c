@@ -1,3 +1,8 @@
+/*
+* Copyright (c) 2019 Cristóvão Zuppardo Rufino
+* See LICENCE file for more information
+*/
+
 void _exit(int status) { (void)status; while(1); }
 
 int _close(int file) { return -1; }

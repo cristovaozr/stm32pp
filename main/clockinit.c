@@ -1,3 +1,8 @@
+/*
+* Copyright (c) 2019 Cristóvão Zuppardo Rufino
+* See LICENCE file for more information
+*/
+
 #include "stm32f4xx.h"
 #include "stm32f407xx.h"
 #include "stm32f4xx_ll_rcc.h"

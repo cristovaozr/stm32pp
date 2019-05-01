@@ -1,3 +1,8 @@
+/*
+* Copyright (c) 2019 Cristóvão Zuppardo Rufino
+* See LICENCE file for more information
+*/
+
 #ifndef OUTPUTGPIO_H_
 #define OUTPUTGPIO_H_
 

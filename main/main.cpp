@@ -1,3 +1,8 @@
+/*
+* Copyright (c) 2019 Cristóvão Zuppardo Rufino
+* See LICENCE file for more information
+*/
+
 #include "Gpio.h"
 #include "OutputGpio.h"
 #include "Usart.h"
