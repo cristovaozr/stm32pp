@@ -13,11 +13,12 @@ int main(void)
         .StopBits = USART::ONE,
         .HardwareFlowControl = USART::HW_NONE
     };
-
-    USART::Usart usart1(USART1, config);
+    USART::Usart serial(USART2, config);
 
     led.Write(GPIO::SET);
     led2.Write(GPIO::SET);
+
+    serial.Write("Hello world!\r\n", 14);
 
     while(true);
 

@@ -38,17 +38,17 @@ Usart::Usart(USART_TypeDef *usart, const USART::ConfigStruct &config) : p_usart(
         this->p_PeriphClk = rcc_clocks.PCLK1_Frequency;
         LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_USART2);
 
-        // GPIOA_2 = TX, GPIOA_3 = RX, GPIOA_0 = CTS, GPIOA_1 = RTS
+        // GPIOD_5 = TX, GPIOD_6 = RX, GPIOA_0 = CTS, GPIOA_1 = RTS
         LL_GPIO_InitTypeDef initstruct = {
-            .Pin = LL_GPIO_PIN_2 | LL_GPIO_PIN_3,
+            .Pin = LL_GPIO_PIN_5 | LL_GPIO_PIN_6,
             .Mode = LL_GPIO_MODE_ALTERNATE,
             .Speed = LL_GPIO_SPEED_FREQ_LOW,
             .OutputType = LL_GPIO_OUTPUT_PUSHPULL,
             .Pull = LL_GPIO_PULL_NO,
             .Alternate = LL_GPIO_AF_7
         };
-        LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOA);
-        LL_GPIO_Init(GPIOA, &initstruct);
+        LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOD);
+        LL_GPIO_Init(GPIOD, &initstruct);
         // TODO: no hardware flow control enabled right now
     }
 #if defined(USART3)
@@ -154,7 +154,7 @@ Usart::~Usart()
 size_t Usart::Write(const void *data, size_t size)
 {
     size_t i;
-    const uint8_t *udata = reinterpret_cast<const uint8_t *>(data);
+    const uint8_t *udata = static_cast<const uint8_t *>(data);
 
     for(i = 0; i < size; i++) {
         while(!isWriteable());
@@ -167,7 +167,7 @@ size_t Usart::Write(const void *data, size_t size)
 size_t Usart::Read(void *data, size_t size)
 {
     size_t i;
-    uint8_t *udata = reinterpret_cast<uint8_t *>(data);;
+    uint8_t *udata = static_cast<uint8_t *>(data);;
 
     for(i = 0; i < size; i++) {
         while(!isReadable());
