@@ -162,8 +162,7 @@ size_t Usart::Write(const void *data, size_t size)
     const uint8_t *udata = static_cast<const uint8_t *>(data);
 
     for(i = 0; i < size; i++) {
-        while(!isWriteable());
-        LL_USART_TransmitData8(this->p_usart, udata[i]);
+        Write(udata[i]);
     }
 
     return i;
@@ -175,11 +174,22 @@ size_t Usart::Read(void *data, size_t size)
     uint8_t *udata = static_cast<uint8_t *>(data);;
 
     for(i = 0; i < size; i++) {
-        while(!isReadable());
-        udata[i] = LL_USART_ReceiveData8(this->p_usart);
+        udata[i] = Read();
     }
 
     return i;
+}
+
+void Usart::Write(uint8_t c)
+{
+    while(!isWriteable());
+    LL_USART_TransmitData8(this->p_usart, c);
+}
+
+uint8_t Usart::Read()
+{
+    while(!isReadable());
+    return LL_USART_ReceiveData8(this->p_usart);
 }
 
 bool Usart::isReadable()

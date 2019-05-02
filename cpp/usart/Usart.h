@@ -8,9 +8,9 @@
 
 #include <cstdint>
 #include <cstddef>
+#include "IComm.h"
 #include "stm32f4xx.h"
 #include "stm32f4xx_ll_usart.h"
-#include "Comm.h"
 
 namespace USART {
 
@@ -37,7 +37,7 @@ typedef struct {
     USART::HardwareFlowControl HardwareFlowControl;
 } ConfigStruct;
 
-class Usart : public Comm {
+class Usart : public IComm {
 public:
 
     explicit Usart(USART_TypeDef *usart, const USART::ConfigStruct &config);
@@ -46,6 +46,8 @@ public:
 
     virtual size_t Write(const void *data, size_t size) override;
     virtual size_t Read(void *data, size_t size) override;
+    virtual void Write(uint8_t c) override;
+    virtual uint8_t Read() override;
 
     virtual bool isReadable() override;
     virtual bool isWriteable() override;
