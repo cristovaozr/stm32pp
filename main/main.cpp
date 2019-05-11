@@ -6,6 +6,7 @@
 #include "Gpio.h"
 #include "OutputGpio.h"
 #include "Usart.h"
+#include "SpiMaster.h"
 
 int main(void)
 {
@@ -24,6 +25,16 @@ int main(void)
     led2.Write(GPIO::SET);
 
     serial.Write("Hello world!\r\n", 14);
+
+    SPI::ConfigStruct s_config = {
+        .baudRate = 1000000,
+        .polarity = SPI::LOW,
+        .phase = SPI::PHASE_1EDGE,
+        .bitOrder = SPI::MSB_FIRST
+    };
+    SPI::SpiMaster spi(SPI2, s_config);
+
+    spi.Write("0123456789", 10);
 
     while(true);
 
