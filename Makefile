@@ -14,14 +14,16 @@ ARFLAGS +=
 INCLUDEDIR += -I./clib -I./cpp -I./cpp/gpio -I./cpp/usart -I./cpp/comm -I./cpp/spi
 CFLAGS += -Wall -ggdb -Os -ffunction-sections -fdata-sections \
 	$(INCLUDEDIR) -DSTM32F407xx \
-	-DUSE_FULL_LL_DRIVER -DHSE_VALUE=8000000 -mcpu=cortex-m4 -mthumb -mfloat-abi=softfp
+	-DUSE_FULL_LL_DRIVER -DHSE_VALUE=8000000 -mcpu=cortex-m4 -mthumb -mfloat-abi=softfp \
+	-std=c11
 CXXFLAGS += -Wall -Wextra -ggdb -Os -ffunction-sections -fdata-sections \
 	$(INCLUDEDIR) -DSTM32F407xx \
 	-DUSE_FULL_LL_DRIVER -DHSE_VALUE=8000000 -mcpu=cortex-m4 -mthumb -mfloat-abi=soft \
-	-fno-rtti
+	-fno-rtti -std=c++11
 ASFLAGS += -mcpu=cortex-m4 -mthumb -mfloat-abi=softfp
 LDFLAGS += -Wl,--gc-sections -Wl,-entry=Reset_Handler -T main/STM32F407ZETx_FLASH.ld \
-	-mthumb -mcpu=cortex-m4 -mfloat-abi=softfp
+	-mthumb -mcpu=cortex-m4 -mfloat-abi=softfp \
+	-fno-rtti
 
 CXX_SRC := $(shell find cpp/ -type f -name '*.cpp')
 C_SRC := $(shell find clib/ -type f -name '*.c')
